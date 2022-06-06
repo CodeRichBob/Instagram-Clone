@@ -18,3 +18,22 @@ class Post (models.MOdel):
     created_date = models.DateTimeField(default=timezone.now)
     likes = models.IntegerField(default=0)
     location = models.CharField(max_lenth=80, null=True)
+
+
+    @classmethod
+    def search_by_name(cls,search_term):
+        photos=cls.objects.filter(author__username__icontains = search_term)
+        #__icontains query flter is used to filter the model
+        return photos
+
+    def __str__(self):
+        return self.caption
+
+    def save_image(self):
+        self.save()
+
+    def delete_image(self):
+        self.delete()
+
+    def update_caption(self):
+        self.save()
