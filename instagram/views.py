@@ -32,4 +32,22 @@ def profile(request):
 
 
 
-    return render(request, 'instagram/profile.html', {'p_form':p_form,"posts" : posts,'user' : user})  
+    return render(request, 'instagram/profile.html', {'p_form':p_form,"posts" : posts,'user' : user}) 
+
+
+def like(request,post_id):
+    user = request.user
+    post = Post.objects.get(id = post_id)
+    current_likes = post.likes
+    liked = Likes.objects.filter(user = user,post = post).count()
+    if not liked:
+        Likes.objects.create(user = user,post = post)
+        current_likes = current_likes + 1
+    else:
+        Likes.objects.filter(user = user,post = post).delete()  
+        current_likes = current_likes - 1
+
+    post.likes = current_likes
+    post.save()
+
+    return redirect('post') 
