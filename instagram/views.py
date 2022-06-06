@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from .models import Post, Profile
+from .models import Post, Profile, Likes, Comment 
 from django.utils import timezone
+from .forms import ProfileUpdateForm,CommentForm,PostForm
 from datetime import datetime
 
 # Create your views here.
