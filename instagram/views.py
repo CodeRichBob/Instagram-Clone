@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Post, Profile,
+from .models import Post, Profile
 from django.utils import timezone
 from datetime import datetime
 
