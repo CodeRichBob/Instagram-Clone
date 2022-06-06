@@ -1,0 +1,63 @@
+{%extends "registration/base.html"%}
+{% load bootstrap5 %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <!-- Empty div -->
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      {% if form.errors %}
+        <p> Password or Username is incorrect </p>
+      {% endif %}
+      <div class="card">
+
+        <div class="text-center mt-2">
+            <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" alt="">
+        </div>
+        <div class="card-body">
+
+          <form  action="/accounts/login/" method="post">
+            {% csrf_token %}
+            {% bootstrap_form form%}
+
+            <div class="form-group d-grid gap-2">
+              <input type="submit" class="btn btn-primary btn-sm " value="Login">
+            </div>
+
+            <input type="hidden" name="next" value="{{next}}">
+
+          </form>
+
+
+        </div>
+
+      </div>
+      <div class="card mt-5 text-center">
+          <div class="card-body">
+            <h6>Dont have an account? <a href="/accounts/register"> Sign Up</a></h6>
+
+          </div>
+
+         
+      </div>
+
+      <div class="apps">
+        <p>Get the app</p>
+        <div class="d_images d-flex">
+
+        <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english-en.png/180ae7a0bcf7.png" alt="">
+        <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_android_english-en.png/e9cd846dc748.png" alt="">
+    </div>
+
+
+    </div>
+
+
+    </div>
+    <!-- empty div -->
+    <div class="col-md-4"></div>
+  </div>
+</div>
+
+{% endblock %}
