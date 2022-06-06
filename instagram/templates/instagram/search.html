@@ -1,0 +1,109 @@
+{%extends 'insta/base.html'%} 
+{% block content %}
+<div class="container">
+
+  <div class="row text-center">
+    {% if photos%}
+      <h2>Found {{ photos|length }} of searched term {{message}}</h2>
+    {% else %}
+      <h2> Found 0 users for the search term. {{message}}</h2>
+    {% endif %}
+
+  </div>
+
+  <div class="row">
+
+  {% if photos %}
+  <div class="row">
+    {% for post in photos %}
+    <div class="col-md-6 col-lg-6 col-12 col-sm-12">
+        <div class="row m-1 mb-3">
+
+          <div class="card">
+            <div class="card-header">
+                
+                <div class="profile_image">
+
+
+                </div>
+                <div class="post_info">
+                    <div class="post_name">
+                        <a href="{% url 'profile' %}">{{post.author}}</a>
+                    </div>
+                    <div class="post_location">
+                        {{post.location}}
+                    </div>
+                </div>
+                
+              
+            </div>
+
+            <div class="post_image">
+               <img src="{{ post.image.url}}" class="img-fluid" alt="">
+            </div>
+            {% if request.user == post.author %}            
+            <div class="engagement">
+               <a href="{% url 'postlike' post.id %}"> <i class="far fa-heart"></i></a>
+               <a href="{% url 'comment' post.id %}"> <i class="far fa-comment"></i> </a>
+               <a href="{% url 'updatepost' post.id %}"> <i class="fas fa-user-edit"></i> </a>
+               <a href="{% url 'deletepost' post.id %}"> <i class="far fa-trash-alt float-end"></i></a>
+            </div>
+            {% else %}
+            <div class="engagement">
+              <a href="{% url 'postlike' post.id %}"> <i class="far fa-heart"></i></a>
+              <a href="{% url 'comment' post.id %}"> <i class="far fa-comment"></i> </a>
+
+
+           </div>
+            
+
+            {% endif %}
+
+            <div class="likes">
+                <a href="">{{post.likes}} likes</a>
+            </div>
+            <div class="caption">
+               <strong><h6>{{post.author}}</h6> </strong> ~ <span>{{post.caption}}</span>
+               <br>
+
+                   {% if not post.comments.all %}
+
+                   No comments yet... 
+              
+                   {% else%}
+            </div>
+            <div class="caption">
+
+            <h2>Comments...</h2>
+            </div>
+
+            <div class="row caption">
+                
+               {% for comment in post.comments.all%}
+               <div class="col-12">
+
+               <strong>{{comment.name}}</strong>:
+               {{comment.comment}}
+               <div class="float-end">
+               {{comment.date | timesince}} ago
+               </div>
+               </div>
+               {% endfor%}
+               {% endif %}
+            </div>
+
+            <div class="time_posted">
+                {{post.created_date | timesince}} ago
+            </div>
+
+        </div>
+          
+        </div>
+    </div>
+    {% endfor%}
+    
+  </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
