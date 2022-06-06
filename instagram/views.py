@@ -9,7 +9,7 @@ def post(request):
     posts = Post.objects.all().filter(created_date__lte = timezone.now()).order_by('-created_date')
 
 
-    return render(request, 'insta/post.html', {'posts':posts})
+    return render(request, 'instagram/post.html', {'posts':posts})
 
 def profile(request):
     user = Profile.objects.get_or_create(user=request.user)
@@ -32,4 +32,4 @@ def profile(request):
 
 
 
-    return render(request, 'insta/profile.html', {'p_form':p_form,"posts" : posts,'user' : user})  
+    return render(request, 'instagram/profile.html', {'p_form':p_form,"posts" : posts,'user' : user})  

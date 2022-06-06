@@ -1,0 +1,128 @@
+{%extends 'instagram/base.html'%}
+
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<div class="container">
+ 
+  <div class="row ">
+    <div class="d-flex fs-4">
+      <div class="followers mx-3">
+       Followers: 20
+    
+      </div>
+      <div class="following">
+       Following: 0
+    
+      </div>
+    </div>
+    
+  
+ <div class="row">
+    <div class="col-md-6 col-lg-3 col-12 col-sm-12">
+      <div class="row m-1 mb-3">
+
+        <div class="card">
+            <div class="card-body">
+              <strong>  <i class="fas fa-user-circle"></i>  {{user.username}}</strong><br>
+              {% if  user.profile.bio%}
+           <p class="fs-6">{{user.profile.bio}}</p>
+           {% else %}
+            <p class="fs-5">
+              No bio 
+            </p> 
+
+
+           {% endif %}
+      
+            </div>
+          </div>
+         
+      </div>
+        <div class="row m-1 mb-3">
+            <div class="card">
+                <div class="card-body">
+                  {% if  user.profile.profile_image.url %}
+                <img  class="image-thumbnail img-fluid mt-3" src="{{ user.profile.profile_image.url }}" alt="Add a profile image">
+                {% else %}
+                <img  class="image-thumbnail img-fluid mt-3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpPYBhkng2T4O2eNj-0iUMZiUYqP3nPoK3xxltsXP71yT47nFs9dKT5jCGq_gOmrznNkc&usqp=CAU" alt="Add a profile image">
+
+                
+                {% endif %}
+
+
+                </div>
+              </div>
+             
+        </div>
+
+</div>
+
+
+<div class="container float-end">
+  <h3 class="m-2 text-decoration-underline fs-3">Update Profile</h3>
+
+  <div class="">
+
+      <div class="card align-items-center">
+          <div class="card-body ">
+              <form   method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+      
+              {{ p_form | crispy  }}
+              <div class="form-group text-center mt-3">
+                <button class="btn btn-outline-info" type="submit">Update</button>
+              </div>
+              
+              </form>
+          </div>
+      </div>
+      </div>
+  
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+<div class="container">
+<div class="text-center">
+  <strong>PHOTOS</strong>
+
+</div>
+{% if not posts %}
+ <div class="fs-2 mt-5 text-center">
+  No Photos
+ </div>
+{% else%}
+
+
+<div class="row">
+  {% for post in posts %}
+
+  <div class="col-md-6 col-lg-3 col-12 col-sm-12">
+      <div class="row m-1 mb-3">
+          <div class="card  ">
+            <img  class="image-thumbnail img-fluid mt-3" src="{{ post.image.url }}" alt="Add a profile image">      
+              <div class="card-body">
+            
+              </div>
+            </div>
+      </div>
+  </div>
+  {% endfor%}
+  
+</div>
+{% endif %}
+
+</div>
+
+</div>
+{% endblock %}

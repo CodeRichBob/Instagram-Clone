@@ -1,0 +1,65 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+<body>
+    
+</body>
+</html>
+<div class="container-fluid">
+      
+
+<div class="header sticky-top">
+<div class="navigation">
+    <div class="insta_logo">
+        <a class="" href="/"> <i class="fab fa-instagram"></i> </a>
+        <a class="v1" href="/"> </a>
+        <a href="{% url 'post'%}"><img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" alt=""> </a>
+
+    </div>
+    <div class="search_bar">
+      <form  role="search" action = "{% url 'search_results' %}">
+      <input type="text" class="text-center"  placeholder="search" name="photos">
+      <button class="search btn" type="submit" href=""> <i class="fas fa-search"></i></button>
+      </form>
+  </div>
+    <div class="contact_icons">
+        <a href="/"><i class="fas fa-home"></i></a>
+        <a href="/"><i class="fab fa-facebook-messenger"></i></a>
+        <a href="/"><i class="far fa-compass"></i> </a>
+        <a href="/"><i class="far fa-heart"></i> </a>
+        <div class="">
+            <ul>
+              <li class="dropdown">
+                <a href="#" data-bs-toggle="dropdown" role="button" aria-expanded="false"> <i class="far fa-user "></i>
+                      </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li>
+                    <a href="/accounts/password/change">Change Password</a>
+                  </li>
+
+                  <li>
+                    <a  href="{% url 'profile'  %}">Profile</a>
+                    </li>
+                  <li>
+                    <a href="/logout">Logout</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+      
+          </div>
+
+
+        <a href="{% url 'new-post'%}"><i class="fas fa-plus"></i></a>
+
+     
+
+    </div>
+</div>
+</div>
+</div>
