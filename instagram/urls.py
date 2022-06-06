@@ -14,3 +14,6 @@ urlpatterns = [
     path('delete/<int:pk>',views.delete_post, name = 'deletepost'), 
     path('update/<str:pk>',views.update_post, name = 'updatepost'),
 ]
+
+if settings.DEBUG:
+    urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
