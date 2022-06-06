@@ -1,0 +1,36 @@
+{% load bootstrap5 %}
+{% load static%}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  {% if title %}
+  <title>Instagram- {{title}}</title>
+  {% else %}
+    <title> Instagram </title>
+  {% endif %}
+  <link rel="icon" href="../../../static/assets/Instagram icon colorful.png">
+
+
+  {% block styles %}
+  {% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+{% endblock %}
+
+</head>
+<body>
+    {% include "navbar.html" %}
+
+   <div class="content_container">
+    {% block content %} {%endblock%} 
+   </div> 
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ {% bootstrap_javascript %}
+ <script src="{% static 'js/script.js' %}"></script>
+{% endblock %}
+</body>
+</html>
