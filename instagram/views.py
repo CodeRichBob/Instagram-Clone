@@ -50,4 +50,22 @@ def like(request,post_id):
     post.likes = current_likes
     post.save()
 
-    return redirect('post') 
+    return redirect('post')
+
+
+def new_comment(request,pk):
+    post = Post.objects.get(pk = pk)
+
+    if request.method == 'POST':
+
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            name = request.user.username
+            comment= form.cleaned_data['comment']
+            obj = Comment(post = post,name = name,comment = comment,date = datetime.now())
+            obj.save()
+        return redirect('post')
+    else:
+        form = CommentForm()
+
+    return render(request, 'instagram/comment.html', {"form": form})     
