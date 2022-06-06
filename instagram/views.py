@@ -82,4 +82,18 @@ def new_post(request):
         return redirect('post')
     else:
         form = PostForm()
-    return render(request, 'instagram/create_post.html', {"form": form})       
+    return render(request, 'instagram/create_post.html', {"form": form}) 
+
+
+def search_results(request):
+
+    if 'photos' in request.GET and request.GET["photos"]:
+        search_term = request.GET.get("photos")
+        searched_articles = Post.search_by_name(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'instagram/search.html',{"message":message,"photos": searched_articles})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'instagram/search.html',{"message":message})      
