@@ -5,7 +5,7 @@ cloudinary==1.29.0
 confusable-homoglyphs==3.2.0
 dj-database-url==0.5.0
 Django==1.11.29
-django-bootstrap-v5
+django-bootstrap-v5==1.0.6
 django-crispy-forms==1.14.0
 django-heroku==0.3.1
 django-registration==2.4.1
