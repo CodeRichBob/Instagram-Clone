@@ -41,7 +41,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'instagram',
-    'bootstrap5',
+    'bootstrap4',
     'cloudinary',
     'crispy_forms',
     'django.contrib.admin',
