@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'instagramclone.wsgi.application'
 
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 #         'NAME': 'instagram',
 #         'USER': 'robert',
 #     'PASSWORD':'@coderichbob1',
@@ -98,17 +98,17 @@ WSGI_APPLICATION = 'instagramclone.wsgi.application'
 # }
 # development
 if config('MODE')=="dev":
-
-    DATABASES = {
-        'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD':config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': '',
-    }
-    }
+   DATABASES = {
+       'default': {
+           'ENGINE': 'django.db.backends.postgresql_psycopg2',
+           'NAME': config('DB_NAME'),
+           'USER': config('DB_USER'),
+           'PASSWORD': config('DB_PASSWORD'),
+           'HOST': config('DB_HOST'),
+           'PORT': '',
+       }
+       
+   }
 # production
 else:
    DATABASES = {
@@ -118,8 +118,13 @@ else:
    }
 
 db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
+
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+
+# db_from_env = dj_database_url.config(conn_max_age=500)
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+# DATABASES['default'].update(db_from_env)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
@@ -152,7 +157,7 @@ TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 
-USE_TZ = True
+# USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
